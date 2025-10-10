@@ -1,0 +1,147 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/clinical-study.schema.json",
+  "title": "Clinical Study Schema",
+  "description": "Schema for clinical study metadata",
+  "type": "object",
+  "required": ["studyId", "title", "status", "studyType"],
+  "properties": {
+    "studyId": {
+      "type": "string",
+      "description": "Unique study identifier",
+      "pattern": "^CS-[0-9]{5}$"
+    },
+    "title": {
+      "type": "string",
+      "description": "Official study title",
+      "minLength": 10
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed study description"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["planning", "recruiting", "active", "completed", "terminated", "suspended"],
+      "description": "Current status of the study"
+    },
+    "studyType": {
+      "type": "string",
+      "enum": ["interventional", "observational", "expanded_access"],
+      "description": "Type of clinical study"
+    },
+    "phase": {
+      "type": "string",
+      "enum": ["phase1", "phase2", "phase3", "phase4", "not_applicable"]
+    },
+    "enrollment": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "actual": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "dates": {
+      "type": "object",
+      "properties": {
+        "startDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "completionDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "primaryCompletionDate": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "sponsors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["lead", "collaborator"]
+          }
+        }
+      }
+    },
+    "principalInvestigator": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "affiliation": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        }
+      }
+    },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Medical conditions being studied"
+    },
+    "interventions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["drug", "device", "procedure", "behavioral", "other"]
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "version": {
+          "type": "string"
+        },
+        "dataSource": {
+          "type": "string"
+        },
+        "qualityScore": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "patientId": "P-00012345",
+  "personalInfo": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "middleName": "Michael",
+    "dateOfBirth": "1985-03-15",
+    "gender": "male",
+    "bloodType": "O+"
+  },
+  "contactInfo": {
+    "email": "john.doe@example.com",
+    "phone": "+15551234567",
+    "address": {
+      "street": "123 Main Street",
+      "city": "New York",
+      "state": "NY",
+      "zipCode": "10001",
+      "country": "USA"
+    }
+  },
+  "emergencyContact": {
+    "name": "Jane Doe",
+    "relationship": "Spouse",
+    "phone": "+15559876543"
+  },
+  "insurance": {
+    "provider": "HealthCare Plus",
+    "policyNumber": "HCP123456789",
+    "groupNumber": "GRP001"
+  },
+  "metadata": {
+    "registrationDate": "2020-01-10T09:00:00Z",
+    "lastVisit": "2024-01-15T10:30:00Z",
+    "status": "active",
+    "recordSource": "hospital_registration_system"
+  }
+}

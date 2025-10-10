@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/medical-record.schema.json",
+  "title": "Medical Record Schema",
+  "description": "Schema for medical record metadata",
+  "type": "object",
+  "required": ["recordId", "patientInfo", "recordDate", "recordType"],
+  "properties": {
+    "recordId": {
+      "type": "string",
+      "description": "Unique identifier for the medical record",
+      "pattern": "^MR-[0-9]{6}$"
+    },
+    "patientInfo": {
+      "type": "object",
+      "required": ["patientId", "name", "dateOfBirth"],
+      "properties": {
+        "patientId": {
+          "type": "string",
+          "description": "Unique patient identifier"
+        },
+        "name": {
+          "type": "object",
+          "properties": {
+            "firstName": {
+              "type": "string"
+            },
+            "lastName": {
+              "type": "string"
+            }
+          }
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date"
+        },
+        "gender": {
+          "type": "string",
+          "enum": ["male", "female", "other", "unknown"]
+        }
+      }
+    },
+    "recordDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when the record was created"
+    },
+    "recordType": {
+      "type": "string",
+      "enum": ["diagnosis", "prescription", "lab_result", "imaging", "consultation"],
+      "description": "Type of medical record"
+    },
+    "provider": {
+      "type": "object",
+      "properties": {
+        "providerId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "specialty": {
+          "type": "string"
+        }
+      }
+    },
+    "facility": {
+      "type": "object",
+      "properties": {
+        "facilityId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "createdBy": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastModified": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "version": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

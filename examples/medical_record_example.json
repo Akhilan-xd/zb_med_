@@ -1,0 +1,31 @@
+{
+  "recordId": "MR-123456",
+  "patientInfo": {
+    "patientId": "P-00012345",
+    "name": {
+      "firstName": "John",
+      "lastName": "Doe"
+    },
+    "dateOfBirth": "1985-03-15",
+    "gender": "male"
+  },
+  "recordDate": "2024-01-15T10:30:00Z",
+  "recordType": "diagnosis",
+  "provider": {
+    "providerId": "DR-001",
+    "name": "Dr. Jane Smith",
+    "specialty": "Cardiology"
+  },
+  "facility": {
+    "facilityId": "FAC-001",
+    "name": "City General Hospital",
+    "location": "New York, NY"
+  },
+  "metadata": {
+    "createdBy": "system_user",
+    "createdAt": "2024-01-15T10:30:00Z",
+    "lastModified": "2024-01-15T10:30:00Z",
+    "version": "1.0",
+    "tags": ["cardiology", "routine", "outpatient"]
+  }
+}

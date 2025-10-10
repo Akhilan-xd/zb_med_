@@ -1,0 +1,128 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/patient.schema.json",
+  "title": "Patient Schema",
+  "description": "Schema for patient information and metadata",
+  "type": "object",
+  "required": ["patientId", "personalInfo", "contactInfo"],
+  "properties": {
+    "patientId": {
+      "type": "string",
+      "description": "Unique patient identifier",
+      "pattern": "^P-[0-9]{8}$"
+    },
+    "personalInfo": {
+      "type": "object",
+      "required": ["firstName", "lastName", "dateOfBirth"],
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "lastName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "middleName": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date"
+        },
+        "gender": {
+          "type": "string",
+          "enum": ["male", "female", "other", "unknown"]
+        },
+        "bloodType": {
+          "type": "string",
+          "enum": ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
+        }
+      }
+    },
+    "contactInfo": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "phone": {
+          "type": "string",
+          "pattern": "^[+]?[0-9]{10,15}$"
+        },
+        "address": {
+          "type": "object",
+          "properties": {
+            "street": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "zipCode": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "emergencyContact": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "relationship": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        }
+      }
+    },
+    "insurance": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string"
+        },
+        "policyNumber": {
+          "type": "string"
+        },
+        "groupNumber": {
+          "type": "string"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "registrationDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lastVisit": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "inactive", "deceased"]
+        },
+        "recordSource": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "studyId": "CS-12345",
+  "title": "A Randomized Study of Drug X Efficacy in Treating Hypertension",
+  "description": "This study aims to evaluate the efficacy and safety of Drug X in patients with moderate to severe hypertension compared to standard treatment.",
+  "status": "recruiting",
+  "studyType": "interventional",
+  "phase": "phase3",
+  "enrollment": {
+    "target": 500,
+    "actual": 127
+  },
+  "dates": {
+    "startDate": "2024-01-01",
+    "completionDate": "2026-12-31",
+    "primaryCompletionDate": "2026-06-30"
+  },
+  "sponsors": [
+    {
+      "name": "Pharmaceutical Research Institute",
+      "type": "lead"
+    },
+    {
+      "name": "National Health Foundation",
+      "type": "collaborator"
+    }
+  ],
+  "principalInvestigator": {
+    "name": "Dr. Sarah Johnson",
+    "affiliation": "Medical University Hospital",
+    "email": "s.johnson@university.edu"
+  },
+  "conditions": [
+    "Hypertension",
+    "Cardiovascular Disease"
+  ],
+  "interventions": [
+    {
+      "type": "drug",
+      "name": "Drug X",
+      "description": "Novel antihypertensive medication, 50mg daily"
+    },
+    {
+      "type": "drug",
+      "name": "Placebo",
+      "description": "Control group placebo"
+    }
+  ],
+  "metadata": {
+    "createdAt": "2023-12-01T08:00:00Z",
+    "lastUpdated": "2024-01-15T14:30:00Z",
+    "version": "2.1",
+    "dataSource": "clinical_trials_registry",
+    "qualityScore": 92.5
+  }
+}
