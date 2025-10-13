@@ -29,4 +29,4 @@ The current vocabulary consists of:
 
 ### References
 [1]: https://schema.org/docs/schemas.html
-
+[1] https://schema.org/docs/schemas.html
