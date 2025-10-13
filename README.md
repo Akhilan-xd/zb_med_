@@ -1,6 +1,6 @@
-# 🧩 Software Metadata Extraction (GitLab)
+# Software Metadata Extraction (GitLab)
 
-## 🧠 Basics and Terminologies
+## Basics and Terminologies
 
 ### **Schema**
 A **schema** defines the structure, organization, and rules for how data is stored and represented.  
