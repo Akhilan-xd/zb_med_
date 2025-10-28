@@ -1,5 +1,5 @@
 # Software Metadata Extraction (GitLab)
-![Objective_img](/home/lil-e-va/zb_med/maSMP-metadata-extraction/maSMP_gitlab/zb_med_/images/gitlab_.png)
+![Objective_img](./images/gitlab_.png)
 
 ## Abstract
 
