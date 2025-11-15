@@ -1,7 +1,10 @@
 # Software Metadata Extraction (GitLab)
 ![Objective_img](./images/gitlab_.png)
 
-## Abstract
+## Description 
+
+The objecctive of this project is to develop a system that identifies the properties which are related to a specific schema, that is used create structure in the past, present, and upcoming research softwares to follow the FAIRness, that helps to organize all the research software for easy retrival of most relatable software to the give query.
+
 
 ## Objectives
 
@@ -12,7 +15,7 @@
   - Optional
 - [ ] PoC
   - [x] Required properties
-  - [ ] Recommended properties
+  - [x] Recommended properties
   - [ ] Optional
 
 ---
