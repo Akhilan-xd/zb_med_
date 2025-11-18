@@ -3,7 +3,7 @@
 
 ## Description 
 
-The objecctive of this project is to develop a system that identifies the properties which are related to a specific schema, that is used create structure in the past, present, and upcoming research softwares to follow the FAIRness, that helps to organize all the research software for easy retrival of most relatable software to the give query.
+The objecctive of this project is to develop a system that identifies the properties which are related to a specific schema, that is used create structure in the past, present, and upcoming research softwares to follow the FAIRness, that helps to organize all the research software for easy retrival of most relatable software to the give query. It is a tool which can be used as a plugin or an application.
 
 
 ## Objectives
@@ -17,6 +17,12 @@ The objecctive of this project is to develop a system that identifies the proper
   - [x] Required properties
   - [x] Recommended properties
   - [ ] Optional
+  
+- [ ] Actual task
+   - [ ] simple plugin or UI (Note: NO ETL --> Use application to extract metadata from any platform (gitlab???).)
+   - Read about SOMEF (already extracts metadata - ### no that great ###)
+   
+  	
 
 ---
 
