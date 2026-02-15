@@ -1,0 +1,34 @@
+# Citation File Format 1.2.0 - HERMES-compatible
+# See: https://citation-file-format.github.io/1.2.0/schema-guide.md
+# Replace the repository-code and url values with your actual GitLab project URL.
+
+cff-version: 1.2.0
+message: "If you use this source code repository, please cite it as below."
+type: software
+
+authors:
+  - family-names: "Ashokan"
+    given-names: "Akhilan"
+
+title: "maSMP Metadata Extraction"
+version: 0.1.0-beta
+date-released: 2025-01-07
+license: GPL-3.0
+
+# GitLab repository URL (replace with your actual GitLab project URL)
+repository-code: "https://gitlab.com/your-group/maSMP-metadata-extraction"
+url: "https://gitlab.com/your-group/maSMP-metadata-extraction"
+
+# Optional: add after depositing to Zenodo
+# doi: "10.5281/zenodo.XXXXX"
+
+keywords:
+  - metadata-extraction
+  - software-management-plan
+  - gitlab
+  - machine-actionable
+  - fastapi
+  - vue3
+
+# Optional: short description (use "abstract" not "description" for CFF 1.2.0)
+# abstract: "Automated metadata extraction for Machine-Actionable Software Management Plans."
