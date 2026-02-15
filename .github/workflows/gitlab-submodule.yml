@@ -1,0 +1,56 @@
+# GitHub Actions workflow for the gitlab submodule
+# Runs HERMES harvest and process on the gitlab submodule when the submodule or its trigger paths change.
+
+name: GitLab submodule (HERMES)
+
+on:
+  push:
+    branches:
+      - understanding_maSMP
+      - main
+    paths:
+      - 'gitlab'
+      - 'gitlab/**'
+      - '.gitmodules'
+  pull_request:
+    branches:
+      - understanding_maSMP
+      - main
+    paths:
+      - 'gitlab'
+      - 'gitlab/**'
+      - '.gitmodules'
+
+jobs:
+  hermes-gitlab:
+    name: Harvest & process (gitlab submodule)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+
+    steps:
+      - name: Checkout repository and submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install HERMES
+        run: pip install hermes
+
+      - name: HERMES harvest (gitlab submodule)
+        run: hermes harvest --path gitlab --config hermes.toml
+
+      - name: HERMES process (gitlab submodule)
+        run: hermes process --path gitlab --config hermes.toml
+
+      - name: Summary
+        run: |
+          echo "HERMES harvest and process completed for gitlab submodule."
+          ls -la gitlab/.hermes/ 2>/dev/null || true
