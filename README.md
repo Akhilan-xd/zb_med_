@@ -20,7 +20,7 @@ The objecctive of this project is to develop a system that identifies the proper
   
 - [ ] Actual task
    - [ ] simple plugin or UI (Note: NO ETL --> Use application to extract metadata from any platform (gitlab???).)
-   - Read about SOMEF (already extracts metadata - ### no that great ###)
+   - Read about SOMEF (already extracts metadata)
    
   	
 
