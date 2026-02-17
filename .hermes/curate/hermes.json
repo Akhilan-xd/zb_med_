@@ -1,0 +1,30 @@
+{
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    {
+      "hermes": "https://software-metadata.pub/ns/hermes/"
+    }
+  ],
+  "@type": "SoftwareSourceCode",
+  "author": [
+    {
+      "@type": "Person",
+      "familyName": "Ashokan",
+      "givenName": "Akhilan"
+    }
+  ],
+  "codeRepository": "https://gitlab.com/your-group/maSMP-metadata-extraction",
+  "datePublished": "2025-01-07",
+  "keywords": [
+    "metadata-extraction",
+    "software-management-plan",
+    "gitlab",
+    "machine-actionable",
+    "fastapi",
+    "vue3"
+  ],
+  "license": "https://spdx.org/licenses/GPL-3.0",
+  "name": "maSMP Metadata Extraction",
+  "url": "https://gitlab.com/your-group/maSMP-metadata-extraction",
+  "version": "0.1.0-beta"
+}
