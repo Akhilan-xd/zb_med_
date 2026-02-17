@@ -7,7 +7,7 @@ message: "If you use this source code repository, please cite it as below."
 type: software
 
 authors:
-  - family-names: "Ashokan_"
+  - family-names: "Ashokan"
     given-names: "Akhilan"
 
 title: "maSMP Metadata Extraction"
