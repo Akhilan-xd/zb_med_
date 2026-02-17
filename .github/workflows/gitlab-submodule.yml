@@ -1,29 +1,16 @@
-# SPDX-FileCopyrightText: 2023 German Aerospace Center (DLR), Forschungszentrum Jülich, Helmholtz-Zentrum Dresden-Rossendorf
-#
-# SPDX-License-Identifier: CC0-1.0
-
-name: Software Publication
+name: Software Publication Direct
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    types:
-      - closed
 
 jobs:
-  hermes-prepare:
-    name: Prepare Metadata for Curation
+  hermes-deposit:
+    name: Harvest → Process → Curate → Deposit
     runs-on: ubuntu-latest
-    if: >
-      github.event_name == 'push' && ! (
-        startsWith(github.ref_name, 'hermes/') ||
-        contains(github.event.head_commit.message, 'hermes/post')
-      )
     permissions:
       contents: write
-      pull-requests: write
 
     steps:
       - uses: actions/checkout@v3
@@ -52,96 +39,19 @@ jobs:
           echo "✅ Curation complete"
 
       - run: |
-          echo "🔧 Creating curation branch..."
-          git branch --show-current > .hermes/curate/target_branch
-          SHORT_SHA=$(echo "$GITHUB_SHA" | cut -c -8)
-          echo "SHORT_SHA=$SHORT_SHA" >> "$GITHUB_ENV"
-          git branch -c "hermes/curate-$SHORT_SHA"
-          git push origin "hermes/curate-$SHORT_SHA"
-          git add -f .hermes/curate
-          echo "✅ Branch hermes/curate-$SHORT_SHA created and pushed"
-
-      - uses: peter-evans/create-pull-request@v5
-        with:
-          base: hermes/curate-${{ env.SHORT_SHA }}
-          branch: hermes/curate-result-${{ env.SHORT_SHA }}
-          title: Metadata Curation for Commit ${{ env.SHORT_SHA }}
-          body: |
-            Please carefully review the attached metadata.
-            If you are satisfied with the result, you may merge this PR, which will trigger publication.
-            (Any temporary branches will be cleaned up.)
-          delete-branch: true
-
-  hermes-curate:
-    name: Publish Software with Curated Metadata
-    if: github.event.pull_request.merged == true && startsWith( github.base_ref , 'hermes/curate-')
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
+          echo "🔍 Running basic checks..."
+          if [ ! -f CITATION.cff ]; then
+            echo "❌ CITATION.cff missing, stopping workflow"
+            exit 1
+          fi
+          echo "✅ All required files present"
 
       - run: |
-          echo "::notice::📦 Installing HERMES for deposit..."
-          pip install hermes
-          echo "✅ HERMES installed"
-
-      - run: |
-          echo "📦 Archiving repository files for publication..."
-          git archive --format zip HEAD gitlab > artifact.zip
+          echo "📦 Archiving repository files..."
+          git archive --format zip HEAD > artifact.zip
           echo "✅ Archive created: artifact.zip"
 
       - run: |
-          echo "📤 Depositing artifacts to Zenodo Sandbox..."
+          echo "📤 Depositing to Zenodo Sandbox..."
           hermes deposit --initial -O invenio_rdm.auth_token ${{ secrets.ZENODO_SANDBOX }} --file artifact.zip --file README.md
           echo "✅ Deposit complete"
-
-      - run: |
-          echo "🛠 Running HERMES postprocess..."
-          hermes postprocess
-          echo "✅ Postprocessing complete"
-
-      - run: |
-          echo "🔧 Creating post-processing PR..."
-          echo "TARGET_BRANCH=$(cat .hermes/curate/target_branch)" >> "$GITHUB_ENV"
-
-      - uses: peter-evans/create-pull-request@v5
-        with:
-          branch: hermes/post-${{ github.run_id }}
-          base: ${{ env.TARGET_BRANCH }}
-          title: Review hermes post-processing results
-          body: |
-            This is an automated pull request created by HERMES post-processing.
-
-            Please carefully review the changes and finally merge them.
-
-      - run: |
-          echo "🧹 Deleting all old hermes/curate branches..."
-          for BRANCH in $(git ls-remote origin 'refs/heads/hermes/curate-*' | cut -f2 | cut -d'/' -f'3-'); do
-            echo "Deleting branch $BRANCH"
-            git push origin --delete "$BRANCH"
-          done
-          echo "✅ Cleanup of curation branches complete"
-
-  hermes-cleanup:
-    name: Cleanup aborted curation branches
-    if: github.event.pull_request.merged == false && startsWith( github.base_ref , 'hermes/curate-')
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-
-    steps:
-      - uses: actions/checkout@v3
-      - run: |
-          echo "🧹 Cleaning up aborted curation branches..."
-          for BRANCH in $(git ls-remote origin 'refs/heads/hermes/curate-*' | cut -f2 | cut -d'/' -f'3-'); do
-            echo "Deleting branch $BRANCH"
-            git push origin --delete "$BRANCH"
-          done
-          echo "✅ Aborted curation branches deleted"
