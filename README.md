@@ -7,7 +7,7 @@ The objecctive of this project is to develop a system that identifies the proper
 
 
 ## Objectives
-
+- [ ] Hermes Integration
 - [ ] Extract–Transform–Load (**ETL**) Pipeline  
 - [ ] Find the relevant information for metadata extraction from GitLab
   - Required properties (project API vs REST API)
