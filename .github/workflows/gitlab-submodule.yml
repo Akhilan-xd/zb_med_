@@ -63,7 +63,7 @@ jobs:
 
       - uses: peter-evans/create-pull-request@v5
         with:
-          base: main
+          base: hermes/curate-${{ env.SHORT_SHA }}
           branch: hermes/curate-result-${{ env.SHORT_SHA }}
           title: Metadata Curation for Commit ${{ env.SHORT_SHA }}
           body: |
